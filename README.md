@@ -187,6 +187,7 @@ Return the sublist of matching URLs sorted by relevance, and the total of matchi
 * https://hub.docker.com/u/anthonysigogne
 * https://www.geeksforgeeks.org/page-rank-algorithm-implementation/
 * https://techoverflow.net/2019/03/11/how-to-fix-elasticsearch-exited-with-code-78/
+* `curl(or u can just man it in linux)`: https://gist.github.com/subfuzion/08c5d85437d5d4f00e58
 
 
 ## PORTS

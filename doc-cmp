@@ -4,7 +4,7 @@ services:
     image: "redis"
     container_name: redis
     volumes:
-      - ./data/redis:/data
+      - $PWD/data/redis:/data
     ports:
       - 6379:6379
   rq-dashboard:
@@ -17,10 +17,10 @@ services:
       - REDIS_HOST=redis
       - REDIS_PORT=6379
   elasticsearch:
-    image: "docker.elastic.co/elasticsearch/elasticsearch:5.5.0"
+    image: "docker.elastic.co/elasticsearch/elasticsearch:7.1.1"
     container_name: elasticsearch
-    # volumes:
-    #   - ./data/elastic:/usr/share/elasticsearch/data
+    volumes:
+      - $PWD/data/elastic:/usr/share/elasticsearch/data
     ports:
       - 9200:9200
       - 9300:9300

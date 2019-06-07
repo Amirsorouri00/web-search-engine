@@ -24,6 +24,13 @@ About 500 French URLs and 500 English URLs of the news network http://www.france
 
 ## INSTALL AND RUN
 
+```
+$ cd rq-worker
+$ docker build -t rq .
+$ cd ..
+$ docker-compose up
+```
+
 ### REQUIREMENTS
 This tool requires *Python3+* and *ElasticSearch5+*.
 
@@ -158,6 +165,9 @@ Return the sublist of matching URLs sorted by relevance, and the total of matchi
 
   ```
   curl http://localhost:5000/search --data "query=freelance fullstack"
+  curl http://localhost:5000/index --data "language=en&url=https://www.laracasts.com"
+  curl http://localhost:5000/index --data "language=en&url=https://www.laravel.com"
+  curl -d "query=laravel" -X POST http://localhost:5000/search
   ```
 
 ## FUTURE FEATURES
@@ -169,6 +179,21 @@ Return the sublist of matching URLs sorted by relevance, and the total of matchi
 * connect to pixel tool
 * better description of results
 * redis to index a single url
+
+
+## USEFULL URLS
+* https://hub.docker.com/r/anthonysigogne/web-search-engine-ui/
+* https://hub.docker.com/r/anthonysigogne/web-search-engine
+* https://hub.docker.com/u/anthonysigogne
+* https://www.geeksforgeeks.org/page-rank-algorithm-implementation/
+* https://techoverflow.net/2019/03/11/how-to-fix-elasticsearch-exited-with-code-78/
+
+
+## PORTS
+* 80
+* 9181
+* 5000
+
 
 ## LICENCE
 MIT

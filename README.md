@@ -190,6 +190,17 @@ Return the sublist of matching URLs sorted by relevance, and the total of matchi
 * `curl(or u can just man it in linux)`: https://gist.github.com/subfuzion/08c5d85437d5d4f00e58
 
 
+## justext
+* https://pypi.org/project/jusText/
+* https://github.com/miso-belica/jusText
+* https://nlp.fi.muni.cz/projects/justext/?url=https%3A%2F%2Fgithub.com%2F&language=English&max_heading_distance=150&max_good_distance=5&length_low=70&length_high=140&stopwords_low=0.2&stopwords_high=0.3&max_link_density=0.4
+  
+  ```
+  python -m justext -s English -o text.txt https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-highlighting.html#highlight-all
+
+
+  ```
+
 ## PORTS
 * 80
 * 9181

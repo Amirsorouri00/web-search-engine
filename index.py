@@ -104,7 +104,6 @@ def index():
 
     # launch exploration job
     index_job.delay(data["url"])
-
     return "Indexing started"
 
 @job('default', connection=redis_conn)

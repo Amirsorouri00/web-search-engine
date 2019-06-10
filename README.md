@@ -197,9 +197,16 @@ Return the sublist of matching URLs sorted by relevance, and the total of matchi
   
   ```
   python -m justext -s English -o text.txt https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-highlighting.html#highlight-all
-
-
+  
   ```
+
+## mine explore
+  ```
+  $ python 
+  >>> import index
+  >>> index.explore_job(<url>)
+  ```
+  done..
 
 ## PORTS
 * 80

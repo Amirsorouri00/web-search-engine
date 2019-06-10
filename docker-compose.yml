@@ -19,11 +19,36 @@ services:
   elasticsearch:
     image: "docker.elastic.co/elasticsearch/elasticsearch:5.5.0"
     container_name: elasticsearch
-    # volumes:
-    #   - ./data/elastic:/usr/share/elasticsearch/data
+    volumes:
+      - esdata1:/data/elastic
     ports:
       - 9200:9200
       - 9300:9300
+    environment:
+      # - discovery.type=single-node
+      - http.port=9200
+      - http.cors.enabled=true
+      # - xpack.security.authc.accept_default_password = true
+      - http.cors.allow-origin=http://localhost:1358,http://127.0.0.1:1358
+      - http.cors.allow-headers=X-Requested-With,X-Auth-Token,Content-Type,Content-Length,Authorization
+      - http.cors.allow-credentials=true
+      # - bootstrap.memory_lock=true
+      # - 'ES_JAVA_OPTS=-Xms750m -Xmx750m'
+    ulimits:
+      nproc: 3000
+      nofile: 524288
+      memlock:
+        soft: -1
+        hard: -1
+    mem_limit: 4000m
+  dejavu:
+    image: appbaseio/dejavu:3.2.3
+    container_name: dejavu
+    ports:
+        - '1358:1358'
+    links:
+        - elasticsearch
+
   search-engine-job:
     image: "anthonysigogne/web-search-engine"
     container_name: web-search-engine
@@ -60,3 +85,8 @@ services:
       - FLASK_APP=index.py
       - REDIS_HOST=redis
       - REDIS_PORT=6379
+
+
+volumes:
+  esdata1:
+    driver: local

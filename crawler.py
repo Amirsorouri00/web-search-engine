@@ -17,10 +17,21 @@ from rq.decorators import job
 from rq import Queue
 from elasticsearch_dsl.connections import connections
 
-hosts = [os.getenv("HOST")]
-http_auth = (os.getenv("USERNAME"), os.getenv("PASSWORD"))
-port = os.getenv("PORT")
+# hosts = [os.getenv("HOST")]
+# http_auth = (os.getenv("USERNAME"), os.getenv("PASSWORD"))
+# port = os.getenv("PORT")
+# client = connections.create_connection(hosts=hosts, http_auth=http_auth, port=port)
+
+# initiate the elasticsearch connection
+# hosts = [os.getenv("HOST")]
+hosts = "localhost"
+http_auth = ("elastic", "changeme")
+# http_auth = (os.getenv("USERNAME"), os.getenv("PASSWORD"))
+# port = os.getenv("PORT")
+port = "9200"
+# client = connections.create_connection(hosts=hosts, http_auth=http_auth, port=port)
 client = connections.create_connection(hosts=hosts, http_auth=http_auth, port=port)
+
 
 class SingleSpider(scrapy.spiders.CrawlSpider):
     """

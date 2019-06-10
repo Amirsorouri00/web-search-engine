@@ -46,46 +46,51 @@ with app.app_context():
     from helper import *
 
 # initiate the elasticsearch connection
-hosts = [os.getenv("HOST")]
-http_auth = (os.getenv("USERNAME"), os.getenv("PASSWORD"))
-port = os.getenv("PORT")
+# hosts = [os.getenv("HOST")]
+hosts = "localhost"
+http_auth = ("elastic", "changeme")
+# http_auth = (os.getenv("USERNAME"), os.getenv("PASSWORD"))
+# port = os.getenv("PORT")
+port = "9200"
+# client = connections.create_connection(hosts=hosts, http_auth=http_auth, port=port)
 client = connections.create_connection(hosts=hosts, http_auth=http_auth, port=port)
 
 # initiate Redis connection
-redis_conn = Redis(os.getenv("REDIS_HOST", "redis"), os.getenv("REDIS_PORT", 6379))
+redis_conn = Redis("127.0.0.1", os.getenv("REDIS_PORT", 6379))
+# redis_conn = Redis(os.getenv("REDIS_HOST", "redis"), os.getenv("REDIS_PORT", 6379))
 
-# create indices and mappings
-for lang in ["fr"] : #languages :
-    # index named "web-<language code>"
-    index = Index('web-%s'%lang)
-    if not index.exists() :
-        index.create()
+# # create indices and mappings
+# for lang in ["fr"] : #languages :
+#     # index named "web-<language code>"
+#     index = Index('web-%s'%lang)
+#     if not index.exists() :
+#         index.create()
 
-    # mapping of page
-    m = Mapping('page')
-    m.field('url', 'keyword')
-    m.field('domain', 'keyword')
-    m.field('title', 'text', analyzer=languages[lang])
-    m.field('description', 'text', analyzer=languages[lang])
-    m.field('body', 'text', analyzer=languages[lang])
-    m.field('weight', 'long')
-    #m.field('thumbnail', 'binary')
-    #m.field('keywords', 'completion') # -- TEST -- #
-    m.save('web-%s'%lang)
+#     # mapping of page
+#     m = Mapping('page')
+#     m.field('url', 'keyword')
+#     m.field('domain', 'keyword')
+#     m.field('title', 'text', analyzer=languages[lang])
+#     m.field('description', 'text', analyzer=languages[lang])
+#     m.field('body', 'text', analyzer=languages[lang])
+#     m.field('weight', 'long')
+#     #m.field('thumbnail', 'binary')
+#     #m.field('keywords', 'completion') # -- TEST -- #
+#     m.save('web-%s'%lang)
 
-# index for misc mappings
-index = Index('web')
-if not index.exists() :
-    index.create()
+# # index for misc mappings
+# index = Index('web')
+# if not index.exists() :
+#     index.create()
 
-# mapping of domain
-m = Mapping('domain')
-m.field('homepage', 'keyword')
-m.field('domain', 'keyword')
-m.field('email', 'keyword')
-m.field('last_crawl', 'date')
-#m.field('keywords', 'text', analyzer=languages[lang])
-m.save('web')
+# # mapping of domain
+# m = Mapping('domain')
+# m.field('homepage', 'keyword')
+# m.field('domain', 'keyword')
+# m.field('email', 'keyword')
+# m.field('last_crawl', 'date')
+# #m.field('keywords', 'text', analyzer=languages[lang])
+# m.save('web')
 
 @app.route("/index", methods=['POST'])
 def index():
@@ -175,7 +180,7 @@ def explore_job(link) :
     process = CrawlerProcess({
         'USER_AGENT': "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.75 Safari/537.36",
         'DOWNLOAD_TIMEOUT':100,
-        'DOWNLOAD_DELAY':0.25,
+        'DOWNLOAD_DELAY':0.45,
         'ROBOTSTXT_OBEY':True,
         'HTTPCACHE_ENABLED':False,
         'REDIRECT_ENABLED':False,

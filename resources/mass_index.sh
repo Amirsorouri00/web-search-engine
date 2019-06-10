@@ -10,5 +10,7 @@ filename="$1"
 while read -r line
 do
     name="$line"
-    curl -X POST -F "url=$name" -F "language=$2" "http://$3:$4/index"
+    echo $name
+    echo $3
+    echo $(curl -X POST "http://$3:$4/index" -F "url=$name" -F "language=$2")
 done < "$filename"

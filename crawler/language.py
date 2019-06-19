@@ -1,14 +1,11 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
 """
 Toolbox for languages.
 """
 
-__author__ = "Anthony Sigogne"
-__copyright__ = "Copyright 2017, Byprog"
-__email__ = "anthony@byprog.com"
-__license__ = "MIT"
+__author__ = ["Amir Hossein Sorouri", "Anthony Sigogne"]
+__copyright__ = "Copyright 2019, DSTea"
+__email__ = ["amirsorouri26@gmail.com", "anthony@byprog.com"]
+__license__ = "GNU"
 __version__ = "1.0"
 
 # declare a dictionary of languages (code -> long form)

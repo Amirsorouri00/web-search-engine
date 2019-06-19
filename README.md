@@ -168,6 +168,15 @@ Return the sublist of matching URLs sorted by relevance, and the total of matchi
   curl http://localhost:5000/index --data "language=en&url=https://www.laracasts.com"
   curl http://localhost:5000/index --data "language=en&url=https://www.laravel.com"
   curl -d "query=laravel" -X POST http://localhost:5000/search
+  curl localhost:9200/_cat/health
+  ```
+
+## Explore Job (web search engine container removed from the services)
+  ```
+  $ source web_env/bin/activate
+  $ python
+  >>> import index
+  >>> index.explore_job("link to the website to crawl")
   ```
 
 ## FUTURE FEATURES
@@ -187,6 +196,7 @@ Return the sublist of matching URLs sorted by relevance, and the total of matchi
 * https://hub.docker.com/u/anthonysigogne
 * https://www.geeksforgeeks.org/page-rank-algorithm-implementation/
 * https://techoverflow.net/2019/03/11/how-to-fix-elasticsearch-exited-with-code-78/
+* https://stackoverflow.com/questions/42230536/docker-compose-up-times-out-with-unixhttpconnectionpool
 * `curl(or u can just man it in linux)`: https://gist.github.com/subfuzion/08c5d85437d5d4f00e58
 
 
@@ -207,6 +217,15 @@ Return the sublist of matching URLs sorted by relevance, and the total of matchi
   >>> index.explore_job(<url>)
   ```
   done..
+
+## List of User Agents
+* http://www.useragentstring.com/pages/useragentstring.php
+
+## Requirements 
+* https://www.scrapehero.com/how-to-rotate-proxies-and-ip-addresses-using-python-3/
+* https://blog.scrapinghub.com/2015/09/29/aduana-link-analysis-to-crawl-the-web-at-scale
+* https://github.com/scrapinghub/aduana
+* https://github.com/scrapinghub
 
 ## PORTS
 * 80

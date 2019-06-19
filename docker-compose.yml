@@ -49,20 +49,20 @@ services:
     links:
         - elasticsearch
 
-  search-engine-job:
-    image: "anthonysigogne/web-search-engine"
-    container_name: web-search-engine
-    ports:
-      - "5000:5000"
-    restart: on-failure
-    environment:
-      - HOST=elasticsearch
-      - PORT=9200
-      - USERNAME=elastic
-      - PASSWORD=changeme
-      - FLASK_APP=index.py
-      - REDIS_HOST=redis
-      - REDIS_PORT=6379
+  # search-engine-job:
+  #   image: "anthonysigogne/web-search-engine"
+  #   container_name: web-search-engine
+  #   ports:
+  #     - "5000:5000"
+  #   restart: on-failure
+  #   environment:
+  #     - HOST=elasticsearch
+  #     - PORT=9200
+  #     - USERNAME=elastic
+  #     - PASSWORD=changeme
+  #     - FLASK_APP=index.py
+  #     - REDIS_HOST=redis
+  #     - REDIS_PORT=6379
   search-engine-ui:
     image: "anthonysigogne/web-search-engine-ui"
     container_name: web-search-engine-ui

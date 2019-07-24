@@ -90,3 +90,6 @@ services:
 volumes:
   esdata1:
     driver: local
+
+
+    docker run -p 5000:5000 anthonysigogne/web-search-engine

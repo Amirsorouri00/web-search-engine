@@ -45,7 +45,7 @@ client = connections.create_connection(hosts=hosts, http_auth=http_auth, port=po
 for lang in languages :
     # index named "web-<language code>"
     index = Index('web-%s'%lang)
-    if not index.exists():
+    if not index.exists() :
         index.create()
 
     # mapping of page
